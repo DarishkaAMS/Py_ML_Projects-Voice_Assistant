@@ -1,5 +1,5 @@
 import pyttsx3 as px
-import speech_recognition as sr
+# import speech_recognition as sr
 
 engine = px.init()
 
@@ -17,6 +17,8 @@ engine.stop()
 
 recognizer = sr.Recognizer()
 with sr.Microphone() as source:
+    recognizer.energy_threshold = 10_000
+    print("listen")
     audio = recognizer.listen(source)
     text = recognizer.recognize_google(audio)
     print(text)
