@@ -11,3 +11,4 @@ A virtual assistant program that helps you to:
 It is an AI powered project (as it uses Speech Recognition module) which is made using python programming.
 
 Special Thanks to EduYear YouTube
+c
