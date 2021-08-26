@@ -1,20 +1,23 @@
 import datetime
+from email.message import EmailMessage
 import pyttsx3 as px
 # import speech_recognition as sr
-import time
+
 
 engine = px.init()
 
+# Assistant and User setup
+user = "Daryna Sparks"
+# user = "Daryna Nikolaienko"
+assistant = "DarishkaAMS"
 voices = engine.getProperty('voices')
 # GB_HAZEL_11.0
 engine.setProperty('voice', voices[1].id)
-
-
 rate = engine.getProperty('rate')
 engine.setProperty('rate', 180)
 
-
-engine.say("Hello, my name is DarishkaAMS. I'm the Intelligent Voice Assistant in Python. Let's make miracles happen")
+# Start Greeting
+engine.say(f"Hello, my name is {assistant}. I'm the Intelligent Voice Assistant in Python. Let's make miracles happen")
 engine.runAndWait()
 engine.stop()
 
@@ -27,15 +30,15 @@ engine.stop()
 #     print(text)
 
 
+# General Output
 def output(out):
     # print(out)
     engine.say(out)
     engine.runAndWait()
     engine.stop()
 
-user = "DarishkaAMS"
 
-
+# Time Greetings
 def greet():
     hour = datetime.datetime.now().hour
     if(hour >= 6) and (hour < 12):
@@ -48,3 +51,29 @@ def greet():
 
 
 greet()
+
+
+# Email Sending
+def send_email():
+    email_list = {
+        "test": "honeydummyams@gmail.com"
+    }
+    try:
+        email = EmailMessage()
+        output("Whom should I send this e-mail?")
+        name = inputCommand().lower()
+        email["To"] = email_list[name]
+        output("How about the e-mail title?")
+        email["Subject"] = inputCommand()
+        email["From"] = email_sender
+        output("What should i Say?")
+        email.set_content(inputCommand())
+        s = smtplib.SMTP("smtp.gmail.com", 587)
+        s.starttls()
+        s.login(email_sender, password)
+        s.send_message(email)
+        s.close()
+        output("Email has benn sent")
+    except Exception as e:
+        print(e)
+        output("I can't send the e-mail. Sorry...")
