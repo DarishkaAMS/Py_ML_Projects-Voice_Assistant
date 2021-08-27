@@ -1,14 +1,13 @@
 import datetime
 from email.message import EmailMessage
 import pyttsx3 as px
-# import speech_recognition as sr
+import speech_recognition as sr
 
 
 engine = px.init()
 
 # Assistant and User setup
-user = "Daryna Sparks"
-# user = "Daryna Nikolaienko"
+user = "Daryna Nikolaienko"
 assistant = "DarishkaAMS"
 voices = engine.getProperty('voices')
 # GB_HAZEL_11.0
